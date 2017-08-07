@@ -21,44 +21,44 @@ $vk->setKey($json->response->endpoint, $json->response->key);
 $act = $_GET['act'];
 switch ($act) {
 
-	//add rules 
-	case "addRules":
-      $value_ = $_POST['value'];
-      $array_word = explode(",", $value_);
+  //add rules 
+  case "addRules":
+    $value_ = $_POST['value'];
+    $array_word = explode(",", $value_);
 
-      for ($i = 0; $i < count($array_word); $i++) {
-        $value = explode("=", $array_word[$i])[0];
-        $tag = explode("=", $array_word[$i])[1];
+    for ($i = 0; $i < count($array_word); $i++) {
+      $value = explode("=", $array_word[$i])[0];
+      $tag = explode("=", $array_word[$i])[1];
 
-        if ($tag == "") continue;
+      if ($tag == "") continue;
 
-        $rules = [
-          "rule" => [
-            "value" => "" . $value,
-            "tag" => "" . $tag
-          ]
-        ];
-
-        //add
-        $response = $vk->addRules($rules);
-        $result = json_decode($response);	
-        if ($result->error) {
-        	exit("Error");
-        } else {
-        	exit("200");
-        }
-      }
-      exit("");
-	  break;
-
-	case "delRules":
-      $tag = $_POST['tag'];
       $rules = [
-        "tag" => $tag
+        "rule" => [
+          "value" => "" . $value,
+          "tag" => "" . $tag
+        ]
       ];
+
+      //add
+      $response = $vk->addRules($rules);
+      $result = json_decode($response);	
+      if ($result->error) {
+        exit("Error");
+      } else {
+        exit("200");
+      }
+    }
+    exit("");
+    break;
+
+  case "delRules":
+    $tag = $_POST['tag'];
+    $rules = [
+        "tag" => $tag
+    ];
       $vk->delRules($rules);
-      exit();
-	  break;
+    exit();
+    break;
 }
 
 //load template
