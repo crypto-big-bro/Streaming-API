@@ -3,7 +3,7 @@
 
 Для старта отредактируйте файл **example/scripts/VKAPI.php**
 
-```
+```php
 public function __construct() {
   $this->accessToken = /** ВАШ ТОКЕН ПРИЛОЖЕНИЯ **/;
   $this->url = "https://api.vk.com/method/";
